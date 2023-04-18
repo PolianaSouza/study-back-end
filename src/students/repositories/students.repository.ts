@@ -5,7 +5,7 @@ import { UpdateStudentDto } from "../dto/update-student.dto";
 import { StudentEntity } from "../entities/student.entity";
 
 @Injectable()
-export class UsersRepository {
+export class StudentsRepository {
   constructor(private readonly prisma: PrismaService) {}
 
   async create(createStudentDto: CreateStudentDto) {
