@@ -16,7 +16,11 @@ export class StudentsRepository {
   }
 
   async findAll(): Promise<StudentEntity[]> {
-    return await this.prisma.student.findMany();
+    return await this.prisma.student.findMany({
+      include: {
+        courses: true,
+      }
+    });
   }
 
   async findOne(id: string): Promise<StudentEntity> {
