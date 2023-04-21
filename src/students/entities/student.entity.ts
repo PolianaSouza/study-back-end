@@ -16,6 +16,7 @@ export class StudentEntity implements Student {
   country: string;
   zip_code: string;
   house_number: string;
+  id_course: string;
   createdAt: Date;
   updatedAt: Date;
 

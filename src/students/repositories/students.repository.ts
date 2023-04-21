@@ -27,6 +27,9 @@ export class StudentsRepository {
     return this.prisma.student.findUnique({
       where: {
         id,
+      },
+      include: {
+        courses: true,
       }
     });
   }
