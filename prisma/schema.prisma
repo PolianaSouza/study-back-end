@@ -26,8 +26,8 @@ model Student {
   country      String
   zip_code     String
   house_number String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  createdAt    DateTime            @default(now())
+  updatedAt    DateTime            @default(now())
   //testar relacionamentos
   courses      StudentsOnCourses[]
 
@@ -35,13 +35,13 @@ model Student {
 }
 
 model Course {
-  id              String @id @default(uuid())
-  code_course     String @unique
+  id              String              @id @default(uuid())
+  code_course     String              @unique
   name_course     String
   workload_course String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  students StudentsOnCourses[]
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @default(now())
+  students        StudentsOnCourses[]
 
   @@map("courses")
 }
@@ -55,4 +55,27 @@ model StudentsOnCourses {
   assignedBy String
 
   @@id([studentId, courseId])
+}
+
+model User {
+  id Int @id @default(autoincrement())
+
+  email    String @unique
+  password String
+  name     String
+  level    Levels @relation(fields: [idLevel], references: [id])
+  idLevel  String
+
+  @@map("users")
+}
+
+model Levels {
+  id        String   @id @default(uuid())
+  name      String   @db.VarChar(60)
+  createdAt DateTime @default(now())
+  deletedAt DateTime @default(now())
+
+  users User[]
+
+  @@map("levels")
 }
